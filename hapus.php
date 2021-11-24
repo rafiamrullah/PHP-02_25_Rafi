@@ -13,10 +13,10 @@
 <?php
     include './koneksi.php';
     
-    $id_siswa = $_GET['id_siswa'];
+    $id_buku = $_GET['id_buku'];
     
 
-    $sql = "DELETE FROM buku WHERE id_siswa='$id_siswa'";
+    $sql = "DELETE FROM buku WHERE id_buku='$id_buku'";
     if($conn->query($sql) === TRUE){
         echo "<div class='alert alert-primary alert-success' role='alert'> <a href='tampil.php' >Kembali</a> <br> Hapus Data Sukses</div>";
     }else{

@@ -13,20 +13,22 @@
 <?php
     include './koneksi.php';
    
-    $id_siswa = $_POST['id_siswa'];
+    $id_buku = $_POST['id_buku'];
         
-    $nis = $_POST['nis'];
-    $nama_siswa = $_POST['nama_siswa'];
-    $jenis_kelamin = $_POST['jenis_kelamin'];
-    $alamat = $_POST['alamat'];
-    $id_jurusan = $_POST['id_jurusan'];
+    $judul_buku = $_POST['judul_buku'];
+    $penulis = $_POST['penulis'];
+    $jenis_buku = $_POST['jenis_buku'];
+    $gambar_buku = $_POST['gambar_buku'];
 
-    $sql = "UPDATE buku SET nis='$nis', nama_siswa='$nama_siswa' , jenis_kelamin='$jenis_kelamin' , alamat='$alamat' , id_jurusan='$id_jurusan'  WHERE id_siswa = '$id_siswa'";
-    
-    if($conn->query($sql) === TRUE){
+    $sql = "UPDATE buku SET judul_buku='$judul_buku' , penulis='$penulis' , jenis_buku='$jenis_buku' , gambar_buku='$gambar_buku'  WHERE id_buku = '$id_buku'";
+    $result= mysqli_query($conn, $sql);
+    if($result){
+
+        $sql2= "UPDATE macam_buku SET jenis_buku='$jenis_buku' WHERE id_buku = '$id_buku'";
+        $result2= mysqli_query($conn, $sql2);
         echo "<div class='alert alert-primary alert-success' role='alert'> <a href='tampil.php' >Kembali</a> <br> Ubah Data Sukses</div>";
     }else{
-        echo "Eror: " . $sql . "<br>" . $conn->error;
+        echo "Error: " . $sql . "<br>" . $conn->error;
     }
 
     $conn->close();

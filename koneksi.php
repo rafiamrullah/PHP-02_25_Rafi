@@ -2,7 +2,7 @@
     $host = "localhost";
     $user = "root";
     $pass = "";
-    $db = "tabel_buku";
+    $db = "db_buku";
 
     $conn = new mysqli($host, $user, $pass, $db);
 

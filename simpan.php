@@ -13,20 +13,26 @@
 <?php
     include './koneksi.php';
 
-    $nis = $_POST['nis'];
-    $nama_siswa = $_POST['nama_siswa'];
-    $jenis_kelamin = $_POST['jenis_kelamin'];
-    $alamat = $_POST['alamat'];
-    $id_jurusan = $_POST['id_jurusan'];
-    
+    if(isset($_POST['simpan'])){
+        $judul_buku = $_POST['judul_buku'];
+        $penulis = $_POST['penulis'];
+        $jenis_buku = $_POST['jenis_buku'];
+        $image = $_FILES['gambar_buku']['name'];
+        $target = "images/".basename($image);
+        
 
-    $sql = "INSERT INTO buku (nis, nama_siswa, jenis_kelamin, alamat, id_jurusan) VALUES('$nis','$nama_siswa','$jenis_kelamin','$alamat','$id_jurusan')";
-    if($conn->query($sql) === TRUE){
-        echo "<div class='alert alert-primary alert-success' role='alert'> <a href='tampil.php' >Kembali</a> <br> Tambah Data Sukses</div>";
-    }else{
-        echo "Error: " . $sql . "<br>" . $conn->error;
+        $sql = "INSERT INTO buku (judul_buku, penulis, jenis_buku, gambar_buku) VALUES('$judul_buku','$penulis','$jenis_buku','$image')";
+        $result= mysqli_query($conn, $sql);
+        if($result){
+
+            $sql2= "INSERT INTO macam_buku (jenis_buku) VALUES ('$jenis_buku')";
+            $result2= mysqli_query($conn, $sql2);
+            echo "<div class='alert alert-primary alert-success' role='alert'> <a href='tampil.php' >Kembali</a> <br> Tambah Data Sukses</div>";
+        }else{
+            echo "Error: " . $sql . "<br>" . $conn->error;
+        }
     }
-
+    
     $conn->close();
 
 ?>

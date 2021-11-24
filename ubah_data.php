@@ -13,9 +13,9 @@
 <?php
     include './koneksi.php';
     
-    $id_siswa = $_GET['id_siswa'];
+    $id_buku = $_GET['id_buku'];
 
-    $sql = ("SELECT * FROM buku WHERE id_siswa = '$id_siswa'");
+    $sql = ("SELECT * FROM buku WHERE id_buku = '$id_buku'");
     $result = $conn->query($sql);
 
     $result= $result->fetch_assoc();
@@ -26,27 +26,23 @@
             <div class="row mt-5">
                
                 <form action="ubah.php" method="POST"> 
-                    <input type="hidden" name="id_siswa" value="<?php echo $result['id_siswa']?>"> 
+                    <input type="hidden" name="id_buku" value="<?php echo $result['id_buku']?>"> 
                         <div class="mb-3">
-                            <label class="form-label">NIS</label>
-                            <input type="number" name="nis" class="form-control" value="<?php echo $result['nis']?>">
+                            <label class="form-label">Judul Buku</label>
+                            <input type="text" name="judul_buku" class="form-control" value="<?php echo $result['judul_buku']?>"></label>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">Nama Siswa</label>
-                            <input type="text" name="nama_siswa" class="form-control" value="<?php echo $result['nama_siswa']?>"></label>
+                            <label class="form-label">Penulis</label>
+                            <input type="text" name="penulis" class="form-control" value="<?php echo $result['penulis']?>"></label>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">Jenis Kelamin</label>
-                            <input type="text" name="jenis_kelamin" class="form-control" value="<?php echo $result['jenis_kelamin']?>"></label>
+                            <label class="form-label">Jenis Buku</label>
+                            <input type="text" name="jenis_buku" class="form-control" value="<?php echo $result['jenis_buku']?>"></label>
                         </div>  
                         <div class="mb-3">
-                            <label class="form-label">Alamat</label>
-                            <input type="text" name="alamat" class="form-control" value="<?php echo $result['alamat']?>"></label>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Id Jurusan</label>
-                            <input type="text" name="id_jurusan" class="form-control" value="<?php echo $result['id_jurusan']?>"></label>
-                        </div>               
+                            <label class="form-label">Gambar Buku</label>
+                            <input type="text" name="gambar_buku" class="form-control" value="<?php echo $result['gambar_buku']?>"></label>
+                        </div>             
                     <button name="simpan" value="stok" class="btn btn-warning">Simpan</button>
                 </form>
             </div>
